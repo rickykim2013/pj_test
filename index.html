@@ -1,1 +1,157 @@
-itest
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+table {
+    border-collapse: collapse;
+    width: 90%;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+	background-color: #4CAF50;
+    color: white;
+}
+textarea{
+  width:100%;
+  height:50px;
+}
+
+
+
+</style>
+
+<script>
+//This global array will store all the persons data as array.
+var personList =[ 
+		{firstName:"Ricky", lastName:"Kim", phone:"111-11-111", email:"tt@dfdfd.com",personIntro:"Nice guy"},
+		{firstName:"Jae", lastName:"Park", phone:"111-11-111", email:"tt@dfdfd.com",personIntro:"Nice guy"},
+		{firstName:"Julie", lastName:"Kim", phone:"222-11-111", email:"tt@dfdfd.com",personIntro:"Nicedfdf df dfd  guy"},
+		{firstName:"Linda", lastName:"Ko", phone:"333-11-111", email:"tt@dfdfd.com",personIntro:"Nice dfd fdfdsfadaf sdfsa fsfsxfssfsd fsfssfsfsfsdz"}
+	]
+
+//This function will be called at the first time 
+function displayTable(){
+	var retStr = '<table>';
+	retStr += '<tr>';
+	retStr += '<th>Action</th>';
+	retStr += '<th>name</th>';
+	retStr += '<th>phone</th>';
+	retStr += '<th>email</th>';
+	retStr += '</tr>';
+		
+	for (i =0 ; i < personList.length;i++){
+		var personRecord =  personList[i];
+		retStr += '<tr>';
+		retStr += '<td><button type="button"onclick="select(' + i + ')"> Detail</button>'  +'</td>';
+		retStr += '<td>' + personRecord["firstName"] + " " + personRecord["lastName"] +'</td>';
+		retStr += '<td>' + personRecord["phone"] +'</td>';
+		retStr += '<td>' + personRecord["email"] +'</td>';
+		retStr += '</tr>';
+		
+	}
+	retStr += '</table>';
+	document.getElementById("grid").innerHTML = retStr;
+}
+
+
+function select(num){
+	
+	//display detail 
+	openDetail();
+
+	var personRecord =  personList[num];
+	document.getElementById("num").value =  num;
+	document.getElementById("fname").value =  personRecord["firstName"];
+	document.getElementById("lname").value =  personRecord["lastName"];
+	document.getElementById("email").value =  personRecord["email"];
+	document.getElementById("phone").value =  personRecord["phone"];
+	document.getElementById("personIntro").value =  personRecord["personIntro"];
+	
+	document.getElementById("fname").focus();
+
+}
+
+function saveData(){
+	
+	var  num = document.getElementById("num").value ;
+	var personRecord =  personList[num];
+	
+	personRecord["firstName"] = document.getElementById("fname").value ;
+	personRecord["lastName"] = document.getElementById("lname").value  ;
+	personRecord["email"] = document.getElementById("email").value ;
+	personRecord["phone"] = document.getElementById("phone").value ;
+	personRecord["personIntro"] = document.getElementById("personIntro").value ;
+
+	//refresh Table
+	closeDetail();
+	displayTable();
+
+}
+
+
+function addNew(){
+	var r = confirm("Are you sure to add new person?");
+	if (r == true) {
+		//new person 
+		var personRecord = {firstName:"New", lastName:"New", phone:"111-11-111", email:"tt@test.com",personIntro:"Nice"};
+		personList.push(personRecord);
+		displayTable();
+		select((personList.length -1));
+	}
+	
+}
+
+function openDetail(){
+	document.getElementById("person_detail").style.display = 'block'; //show
+	document.getElementById("btn_add").disabled  = true;  //disable add btn
+}
+
+function closeDetail(){
+	document.getElementById("person_detail").style.display = 'none'; //show
+	document.getElementById("btn_add").disabled  = false;  //disable add btn
+}
+</script>
+
+</head>
+
+<body>
+<table>
+<tr>
+	<td><div id="grid"  ></div></td>
+	<td>
+		<div id="person_detail" style="display: none;">
+			<h1>Detail</h1>
+			<table>
+			<tr><td>First name</td><td><input type="text" id="fname"></td></tr>
+			<tr><td>Last name</td><td><input type="text" id="lname"></td></tr>
+			<tr><td>E-mail</td><td><input type="text" id="email"></td></tr>
+			<tr><td>phone</td><td><input type="text" id="phone"></td></tr>
+			<tr><td>Intro</td><td><textarea id="personIntro"></textarea></td></tr>
+			
+			<tr><td colspan=2>
+			<input type="hidden"  id="num">
+			<button type="button"onclick="saveData()"> Save</button>
+			<button type="button"onclick="closeDetail()"> Close</button>
+			</td></tr>
+			</table>
+		</div>
+	</td>
+</tr>
+</table>
+
+<button id="btn_add" type="button"onclick="addNew()"> Click me to add</button>	
+		
+<script>
+displayTable()
+</script>
+
+
+</body>
+</html>
