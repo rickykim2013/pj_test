@@ -1,157 +1,118 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html>
-<head>
-
-<style>
-table {
-    border-collapse: collapse;
-    width: 90%;
-}
-tr:nth-child(even){background-color: #f2f2f2}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-th {
-	background-color: #4CAF50;
-    color: white;
-}
-textarea{
-  width:100%;
-  height:50px;
-}
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+      <title>Web Training</title>
 
 
 
-</style>
-
-<script>
-//This global array will store all the persons data as array.
-var personList =[ 
-		{firstName:"Ricky", lastName:"Kim", phone:"111-11-111", email:"tt@dfdfd.com",personIntro:"Nice guy"},
-		{firstName:"Jae", lastName:"Park", phone:"111-11-111", email:"tt@dfdfd.com",personIntro:"Nice guy"},
-		{firstName:"Julie", lastName:"Kim", phone:"222-11-111", email:"tt@dfdfd.com",personIntro:"Nicedfdf df dfd  guy"},
-		{firstName:"Linda", lastName:"Ko", phone:"333-11-111", email:"tt@dfdfd.com",personIntro:"Nice dfd fdfdsfadaf sdfsa fsfsxfssfsd fsfssfsfsfsdz"}
-	]
-
-//This function will be called at the first time 
-function displayTable(){
-	var retStr = '<table>';
-	retStr += '<tr>';
-	retStr += '<th>Action</th>';
-	retStr += '<th>name</th>';
-	retStr += '<th>phone</th>';
-	retStr += '<th>email</th>';
-	retStr += '</tr>';
-		
-	for (i =0 ; i < personList.length;i++){
-		var personRecord =  personList[i];
-		retStr += '<tr>';
-		retStr += '<td><button type="button"onclick="select(' + i + ')"> Detail</button>'  +'</td>';
-		retStr += '<td>' + personRecord["firstName"] + " " + personRecord["lastName"] +'</td>';
-		retStr += '<td>' + personRecord["phone"] +'</td>';
-		retStr += '<td>' + personRecord["email"] +'</td>';
-		retStr += '</tr>';
-		
-	}
-	retStr += '</table>';
-	document.getElementById("grid").innerHTML = retStr;
-}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mobile-angular-ui/1.3.4/css/mobile-angular-ui-base.min.css" />
 
 
-function select(num){
-	
-	//display detail 
-	openDetail();
-
-	var personRecord =  personList[num];
-	document.getElementById("num").value =  num;
-	document.getElementById("fname").value =  personRecord["firstName"];
-	document.getElementById("lname").value =  personRecord["lastName"];
-	document.getElementById("email").value =  personRecord["email"];
-	document.getElementById("phone").value =  personRecord["phone"];
-	document.getElementById("personIntro").value =  personRecord["personIntro"];
-	
-	document.getElementById("fname").focus();
-
-}
-
-function saveData(){
-	
-	var  num = document.getElementById("num").value ;
-	var personRecord =  personList[num];
-	
-	personRecord["firstName"] = document.getElementById("fname").value ;
-	personRecord["lastName"] = document.getElementById("lname").value  ;
-	personRecord["email"] = document.getElementById("email").value ;
-	personRecord["phone"] = document.getElementById("phone").value ;
-	personRecord["personIntro"] = document.getElementById("personIntro").value ;
-
-	//refresh Table
-	closeDetail();
-	displayTable();
-
-}
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-angular-ui/1.3.4/js/mobile-angular-ui.min.js?v=1"></script>
+    <!-- Required to use $touch, $swipe, $drag and $translate services -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-angular-ui/1.3.4/js/mobile-angular-ui.gestures.min.js"></script>
 
 
-function addNew(){
-	var r = confirm("Are you sure to add new person?");
-	if (r == true) {
-		//new person 
-		var personRecord = {firstName:"New", lastName:"New", phone:"111-11-111", email:"tt@test.com",personIntro:"Nice"};
-		personList.push(personRecord);
-		displayTable();
-		select((personList.length -1));
-	}
-	
-}
 
-function openDetail(){
-	document.getElementById("person_detail").style.display = 'block'; //show
-	document.getElementById("btn_add").disabled  = true;  //disable add btn
-}
+      <!--style id='example-css'></style-->
+      <script>
+        angular.module('myApp', ['mobile-angular-ui']);
+      </script>
+    </head>
+    <body ng-app="myApp">
+      <div class="scrollable">
+        <div class="scrollable-content">
+          <div class='section' id='example-html'>
 
-function closeDetail(){
-	document.getElementById("person_detail").style.display = 'none'; //show
-	document.getElementById("btn_add").disabled  = false;  //disable add btn
-}
-</script>
+<ui-state id='activeTab' default='1'></ui-state>
 
-</head>
+<ul class="nav nav-tabs">
+  <li ui-class="{'active': activeTab == 1}">
+    <a ui-set="{'activeTab': 1}">공지사항</a>
+  </li>
+  <li ui-class="{'active': activeTab == 2}">
+    <a ui-set="{'activeTab': 2}">과제</a>
+  </li>
+  <li ui-class="{'active': activeTab == 3}">
+    <a ui-set="{'activeTab': 3}">Resource</a>
+  </li>
+</ul>
 
-<body>
-<table>
-<tr>
-	<td><div id="grid"  ></div></td>
-	<td>
-		<div id="person_detail" style="display: none;">
-			<h1>Detail</h1>
-			<table>
-			<tr><td>First name</td><td><input type="text" id="fname"></td></tr>
-			<tr><td>Last name</td><td><input type="text" id="lname"></td></tr>
-			<tr><td>E-mail</td><td><input type="text" id="email"></td></tr>
-			<tr><td>phone</td><td><input type="text" id="phone"></td></tr>
-			<tr><td>Intro</td><td><textarea id="personIntro"></textarea></td></tr>
-			
-			<tr><td colspan=2>
-			<input type="hidden"  id="num">
-			<button type="button"onclick="saveData()"> Save</button>
-			<button type="button"onclick="closeDetail()"> Close</button>
-			</td></tr>
-			</table>
-		</div>
-	</td>
-</tr>
-</table>
+<div ui-if="activeTab == 1">
+  <h3 class="page-header">Notice</h3>
 
-<button id="btn_add" type="button"onclick="addNew()"> Click me to add</button>	
-		
-<script>
-displayTable()
-</script>
+1st project Score<br>
+Jae: A+, Linda: A, Julie: B
+<hr>
 
 
-</body>
+
+<br>
+
+다음주부터는 2차 강의 
+
+아래 강의를 신청해서 따라 가시기 바랍니다.<br>
+
+https://www.coursera.org/learn/html-css-javascript-for-web-developers
+<br>
+<a target="_new" href=https://www.coursera.org/learn/html-css-javascript-for-web-developers >www.coursera.org </a>
+에 유저 하나 만드신후 신청하시면 됩니다. 공짜..
+<br>
+전체를 3주안에 끝내시기 바랍니다.
+</p>
+</div>
+
+<div ui-if="activeTab == 2">
+  <h3 class="page-header">과제</h3>
+  <p>Jae's  Score: A+<br>
+  <a href="jay1.htm" target="_new"> Link to Jae's home work</a></p>
+  <br>
+
+  
+  <p>Linda's  Score: A<br>
+  <a href="hj2/index.htm" target="_new"> Link to Linda's home work</a></p>
+  <br>
+
+  <p>Julie's  Score: B<br>
+  <a href="hj1/index.htm" target="_new"> Link to Julie's home work</a></p>
+  <br>
+
+</div>
+
+<div ui-if="activeTab == 3">
+  <h3 class="page-header">Useful Link</h3>
+<li>w3schools - THE WORLD'S LARGEST WEB DEVELOPER SITE
+<br>
+<a target="_new" href=http://www.w3schools.com/ >http://www.w3schools.com/</a>
+<br>
+</li>
+
+<li>coursera - HTML, CSS, and Javascript for Web Developers
+<br>
+<a target="_new" href=https://www.coursera.org/learn/html-css-javascript-for-web-developers >https://www.coursera.org/learn/html-css-javascript-for-web-developers </a>
+<br>
+</li>
+
+
+<li>udemy<br>
+<a target="_new" href=https://www.udemy.com >https://www.udemy.com </a>
+<br>
+</li>
+
+
+
+
+
+</div>
+          </div>
+        </div>
+      </div>
+    </body>
 </html>
