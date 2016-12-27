@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+table {
+    border-collapse: collapse;
+    width: 90%;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+	background-color: #4CAF50;
+    color: white;
+}
+textarea{
+  width:100%;
+  height:50px;
+}
+
+
+
+</style>
+
+<script>
+//This global array will store all the persons data as array.
+var personList =[ 
+		{userName:"Ricky Kim", phone:"111-11-111",w_date:"2017-01-19",  email:"tt@dfdfd.com",personIntro:"Nice guy"},
+		{userName:"Jae Park",  phone:"111-11-111",w_date:"2016-12-20",  email:"tt@dfdfd.com",personIntro:"Nice guy"},
+		{userName:"Julie Ko",  phone:"222-11-111",w_date:"2017-01-10",  email:"tt@dfdfd.com",personIntro:"Nicedfdf df dfd  guy"},
+		{userName:"Linda Park",phone:"333-11-111",w_date:"2017-01-05",  email:"tt@dfdfd.com",personIntro:"Nice dfd fdfdsfadaf sdfsa fsfsxfssfsd fsfssfsfsfsdz"}
+	]
+
+var today_date = new Date();
+
+//This function will be called at the first time 
+function displayTable(){
+	var retStr = today_date +'<hr>'
+
+	retStr += '<table>';
+	retStr += '<tr>';
+	retStr += '<th width=20>Action</th>';
+	retStr += '<th>name</th>';
+	retStr += '<th>Due Date</th>';
+	retStr += '<th>phone</th>';
+	retStr += '<th>email</th>';
+	retStr += '</tr>';
+		
+	for (i =0 ; i < personList.length;i++){
+		var personRecord =  personList[i];
+		var w_date = new Date(personRecord["w_date"]);
+		var colorStr ='';
+		//<input type="date" id="w_date">
+		if (w_date <= today_date  ){	colorStr = ' style="background-color:#FA90A0"; ';	}
+		
+		retStr += '<tr ' + colorStr + ' >';
+		retStr += '<td><button type="button"onclick="saveData(' + i + ')"> Update</button>'  +'</td>';
+		retStr += '<td>'  + '<input type="text" name="userName" value="' +   personRecord["userName"] +'" ></td>';
+		retStr += '<td >' + '<input type="date" name="w_date" value="' +  personRecord["w_date"]   +'" ></td>';
+		retStr += '<td>'  + '<input type="text" name="phone" value="' +   personRecord["phone"] +'" ></td>';
+		retStr += '<td>'  + '<input type="text" name="email" value="' +   personRecord["email"] +'" ></td>';
+
+		retStr += '</tr>';
+		
+	}
+	retStr += '</table>';
+	document.getElementById("grid").innerHTML = retStr;
+}
+
+
+function saveData(num){
+
+	var personRecord =  personList[num];
+	
+	personRecord["userName"] = document.getElementsByName("userName")[num].value ;
+	personRecord["email"] = document.getElementsByName("email")[num].value ;
+	personRecord["phone"] = document.getElementsByName("phone")[num].value ;
+	personRecord["w_date"] = document.getElementsByName("w_date")[num].value ;
+	personRecord["personIntro"] = document.getElementsByName("personIntro").value ;
+
+	displayTable();
+}
+
+
+function addNew(){
+	var r = confirm("Are you sure to add new person?");
+	if (r == true) {
+		//new person 
+		var personRecord = {userName:"New", lastName:"New", phone:"111-11-111", email:"tt@test.com",personIntro:"Nice"};
+		personList.push(personRecord);
+		displayTable();
+	}
+	
+}
+
+function openDetail(){
+	document.getElementsByName("person_detail").style.display = 'block'; //show
+	document.getElementsByName("btn_add").disabled  = true;  //disable add btn
+}
+
+function closeDetail(){
+	document.getElementsByName("person_detail").style.display = 'none'; //show
+	document.getElementsByName("btn_add").disabled  = false;  //disable add btn
+}
+</script>
+
+</head>
+
+<body>
+<table>
+<tr>
+	<td><div id="grid"  ></div></td>
+	<td>
+		<div id="person_detail" style="display: none;">
+			<h1>Detail</h1>
+			<table>
+			<tr><td>First name</td><td><input type="text" id="userName"></td></tr>
+			<tr><td>E-mail</td><td><input type="text" id="email"></td></tr>
+			<tr><td>phone</td><td><input type="text" id="phone"></td></tr>
+			<tr><td>w date</td><td><input type="date" id="w_date"></td></tr>
+			<tr><td>Intro</td><td><textarea id="personIntro"></textarea></td></tr>
+			
+			<tr><td colspan=2>
+			<input type="hidden"  id="num">
+			<button type="button"onclick="saveData()"> Save</button>
+			<button type="button"onclick="closeDetail()"> Close</button>
+			</td></tr>
+			</table>
+		</div>
+	</td>
+</tr>
+</table>
+
+<button id="btn_add" type="button"onclick="addNew()"> Click me to add</button>	
+		
+<script>
+displayTable()
+</script>
+
+
+</body>
+</html>
