@@ -1,0 +1,186 @@
+
+
+
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+      <title>Business Forum @DFW</title>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mobile-angular-ui/1.3.4/css/mobile-angular-ui-base.min.css" />
+
+
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-angular-ui/1.3.4/js/mobile-angular-ui.min.js?v=1"></script>
+    <!-- Required to use $touch, $swipe, $drag and $translate services -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-angular-ui/1.3.4/js/mobile-angular-ui.gestures.min.js"></script>
+
+
+
+      <!--style id='example-css'></style-->
+      <script>
+        angular.module('myApp', ['mobile-angular-ui']);
+      </script>
+    </head>
+    <body ng-app="myApp">
+      <div class="scrollable">
+        <div class="scrollable-content">
+          <div class='section' id='example-html'>
+          <p>
+<h3 class="page-header">Business Forum @DFW <a href='http://maps.google.com/?q=2828 Forest Ln #2300, Dallas, TX' target='_new'>
+<img src="maps_64dp.png"></a></h3>
+
+</p>
+
+
+<ui-state id='activeTab' default='1'></ui-state>
+
+<ul class="nav nav-tabs">
+  <li ui-class="{'active': activeTab == 1}">
+    <a ui-set="{'activeTab': 1}">Previous </a>
+  </li>
+  <li ui-class="{'active': activeTab == 2}">
+    <a ui-set="{'activeTab': 2}">Next </a>
+  </li>
+
+  </ul>
+
+
+
+
+
+<div ui-if="activeTab == 1">
+
+
+
+<br>
+<ul>11/15/2016
+<li>Kevin Lee </li>
+<li>한인 그리고 Small Business</li>
+<li>Donut, Cleaner, Beauty Supplier, Japanese Resaurant, Metro/Circket </li>
+</ul>
+<hr>
+<ul>12/20/2016
+<li>Kevin Lee </li>
+<li>성장/프렌차이즈 비지니스 모텔과 한인들의 관계 </li>
+<li>프렌차이즈 Trust(신뢰)를 기반으로 하는 사업 </li>
+</ul>
+
+<hr>
+<ul>1/21/2017
+<li>Sungwook Ha </li>
+<li>비지니스 성장의 조건</li>
+<li>가장 잘하는 영역에 집중하되 시장의 흐름에 따라 변형 </li>
+</ul>
+  
+ <hr>
+<ul>2/21/2017
+<li>Kevin Lee </li>
+<li>내가 생각하는 비지니스에서의 가장 중요한 가치는 무엇일까</li>
+<li>돈/가족/도전/상생 </li>
+</ul> 
+
+<hr> 
+</div>
+
+
+
+
+<div ui-if="activeTab == 2">
+ <hr>
+<ul>3/21/2017
+<li> </li>
+<li>TBD</li>
+<li></li>
+</ul> 
+
+</div>
+
+
+
+
+
+<div ui-if="activeTab == 3">
+<div ng-include="'3.html'"></div>
+<div ng-include="'c.html'"></div>
+</div>
+
+
+
+
+<div ui-if="activeTab == 4">
+<br>
+<ul>
+<li>2/21/2017 </li>
+<li>내가 생각하는 비지니스에서의 가장 중요한 가치는 무엇일까?</li>
+
+</ul>
+
+<hr>  
+
+
+<hr>
+</div>
+
+
+
+
+
+<div ui-if="activeTab == 5">
+<br>
+TBD
+<hr>  
+<ul>
+<li>03/21/2017</li>
+<li>TBD</li>
+</ul>
+</div>
+
+
+
+
+<div ui-if="activeTab == 6">
+<br>
+TBD
+<hr>  
+<ul>
+<li>04/17/2017</li>
+<li>TBD</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </body>
+</html>
