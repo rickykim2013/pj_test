@@ -181,6 +181,20 @@
 </ul>
 
 <br>
+<ul><h4>Book</h4>
+<li ng-repeat="x in _links | filter: { type: 'BO' } ">
+
+
+<span class="menu-desc ng-binding">
+
+<a href="{{x.url}}" target='_new'>
+{{x.title}}</a>  - {{x.desc}}
+</span>
+</li>
+</ul>
+
+
+    <br>
 <ul><h4>Coding School</h4>
 <li ng-repeat="x in _links | filter: { type: 'CODE' } ">
 
@@ -256,8 +270,9 @@ $scope._links = [
 {   "type":"CODE","title":"e3em","url": "http://e3em.com/ko/project/computer-institution/", "desc":"EMPOWER" },
 
 
-{   "type":"CODE","title":"Coding Dojo","url": "http://www.codingdojo.com/", "desc":"Coding Dojo" }
+{   "type":"CODE","title":"Coding Dojo","url": "http://www.codingdojo.com/", "desc":"Coding Dojo" },
 
+{   "type":"BO","title":"인재의 대이동","url": "http://www.aladin.co.kr/shop/book/wletslookViewer.aspx?ISBN=8934976330/", "desc":"인재의 대이동" }
 
 
 
