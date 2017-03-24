@@ -37,7 +37,9 @@
   <li ui-class="{'active': activeTab == 1}">
     <a ui-set="{'activeTab': 1}">공지사항</a>
   </li>
-
+  <li ui-class="{'active': activeTab == 2}">
+    <a ui-set="{'activeTab': 2}">Training</a>
+  </li>
   <li ui-class="{'active': activeTab == 3}">
     <a ui-set="{'activeTab': 3}">Resource</a>
   </li>
@@ -59,7 +61,16 @@ Ricky Kim
 
 
 </pre>
-    
+  
+
+
+
+</p>
+</div>
+
+<div ui-if="activeTab == 2">
+  <h3 class="page-header">TR</h3>
+  
     <br><br>
 <h3>Download SW
 </h3>
@@ -105,26 +116,6 @@ Ricky Kim
 </h3>
 <A HREF="https://www.w3schools.com/sql/default.asp" target="_new">PHP programming</A>
 <br>Select, Update, Delete in SQL in PHP
-
-
-
-</p>
-</div>
-
-<div ui-if="activeTab == 2">
-  <h3 class="page-header">과제</h3>
-  <p>Jae's  Score: A+<br>
-  <a href="http://www.mceo.info/pj/jay1.htm" target="_new"> Link to Jae's home work</a></p>
-  <br>
-
-  
-  <p>Linda's  Score: A<br>
-  <a href="http://www.mceo.info/pj/hj2/index.htm" target="_new"> Link to Linda's home work</a></p>
-  <br>
-
-  <p>Julie's  Score: B<br>
-  <a href="http://www.mceo.info/pj/hj1/index.htm" target="_new"> Link to Julie's home work</a></p>
-  <br>
 
 </div>
 
