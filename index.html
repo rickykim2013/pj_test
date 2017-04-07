@@ -37,7 +37,9 @@
   <li ui-class="{'active': activeTab == 1}">
     <a ui-set="{'activeTab': 1}">공지사항</a>
   </li>
-
+  <li ui-class="{'active': activeTab == 2}">
+    <a ui-set="{'activeTab': 2}">Training</a>
+  </li>
   <li ui-class="{'active': activeTab == 3}">
     <a ui-set="{'activeTab': 3}">Resource</a>
   </li>
@@ -45,6 +47,31 @@
 
 <div ui-if="activeTab == 1">
 <hr>
+    
+    <pre>
+    Hi Team,
+
+As you may know, I am planning to start my web development training from next Month.
+Please make a schedule for this.
+It will be kinds of project based training, which means you may be required to spend your extra time to develop the code at home.
+
+Training session: 1PM at Saturday (4/8/,4/22,5/13/5/27, 6/10, 6/24)
+See you soon.
+Ricky Kim
+
+
+</pre>
+  
+
+
+
+</p>
+</div>
+
+<div ui-if="activeTab == 2">
+  <h3 class="page-header">TR</h3>
+  
+    <br><br>
 <h3>Download SW
 </h3>
 <br>
@@ -89,26 +116,6 @@
 </h3>
 <A HREF="https://www.w3schools.com/sql/default.asp" target="_new">PHP programming</A>
 <br>Select, Update, Delete in SQL in PHP
-
-
-
-</p>
-</div>
-
-<div ui-if="activeTab == 2">
-  <h3 class="page-header">과제</h3>
-  <p>Jae's  Score: A+<br>
-  <a href="http://www.mceo.info/pj/jay1.htm" target="_new"> Link to Jae's home work</a></p>
-  <br>
-
-  
-  <p>Linda's  Score: A<br>
-  <a href="http://www.mceo.info/pj/hj2/index.htm" target="_new"> Link to Linda's home work</a></p>
-  <br>
-
-  <p>Julie's  Score: B<br>
-  <a href="http://www.mceo.info/pj/hj1/index.htm" target="_new"> Link to Julie's home work</a></p>
-  <br>
 
 </div>
 
